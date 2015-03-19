@@ -1,0 +1,330 @@
+
+
+	<page-title ng-if="layoutOptions.pageTitles" title="Card Usage" description="Data visualization widgets for your stats"></page-title>
+
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function($)
+	{
+		if( ! $.isFunction($.fn.dxChart))
+			$(".dx-warning").removeClass('hidden');
+	});
+</script>
+
+<script>
+	var xenonPalette = ['#68b828','#7c38bc','#0e62c7','#fcd036','#4fcdfc','#00b19d','#ff6264','#f7aa47'];
+</script>
+
+
+
+
+
+<div class="row">
+    
+    
+<div class="row">
+    <div class="col-sm-6">
+        <input placeholder="From Date"  class="form-control"/>        
+    </div>
+    <div class="col-sm-6">
+        <input placeholder="To Date" class="form-control" />
+    </div>
+    
+</div>
+    <br>
+    
+	<div class="col-sm-12">
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Totals</h3>
+				<div class="panel-options">
+					<a href="" data-toggle="panel">
+						<span class="collapse-icon">&ndash;</span>
+						<span class="expand-icon">+</span>
+					</a>
+					<a href="" data-toggle="remove">
+						&times;
+					</a>
+				</div>
+			</div>
+			<div class="panel-body">	
+				
+                                
+                                <div class="row">
+	<div class="col-sm-3">
+	
+		<div class="xe-widget xe-counter-block" xe-counter data-count=".num" data-from="0" data-to="700" data-suffix="" data-duration="2">
+			<div class="xe-upper">
+				
+				<div class="xe-icon">
+					<i class="fa-user"></i>
+				</div>
+				<div class="xe-label">
+					<strong class="num">0</strong>
+					<span>Merchants </span>
+				</div>
+				
+			</div>
+			<div class="xe-lower">
+				<div class="border"></div>
+				
+				<span>Result</span>
+				<strong>78% Increase</strong>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="col-sm-3">
+	
+		<div class="xe-widget xe-counter-block xe-counter-block-purple" xe-counter data-count=".num" data-from="0" data-to="512" data-duration="3">
+			<div class="xe-upper">
+				
+				<div class="xe-icon">
+					<i class="linecons-money"></i>
+				</div>
+				<div class="xe-label">
+					<strong class="num">0</strong>
+					<span>sales total</span>
+				</div>
+				
+			</div>
+			<div class="xe-lower">
+				<div class="border"></div>
+				
+				<span>Increase</span>
+				<strong>512 more sales</strong>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="col-sm-3">
+	
+		<div class="xe-widget xe-counter-block xe-counter-block-blue" xe-counter data-suffix="k" data-count=".num" data-from="0" data-to="310" data-duration="4" data-easing="false">
+			<div class="xe-upper">
+				
+				<div class="xe-icon">
+					<i class="linecons-money"></i>
+				</div>
+				<div class="xe-label">
+					<strong class="num">0k</strong>
+					<span>commission</span>
+				</div>
+				
+			</div>
+			<div class="xe-lower">
+				<div class="border"></div>
+				
+				<span>Bounce Rate</span>
+				<strong>51.55%</strong>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="col-sm-3">
+	
+		<div class="xe-widget xe-counter-block xe-counter-block-orange">
+			<div class="xe-upper">
+				
+				<div class="xe-icon">
+					<i class="linecons-user"></i>
+				</div>
+				<div class="xe-label">
+					<strong class="num">250</strong>
+					<span>Active Customers</span>
+				</div>
+				
+			</div>
+			<div class="xe-lower">
+				<div class="border"></div>
+				
+				<span>Tickets Opened</span>
+				<strong xe-counter data-count="this" data-from="0" data-to="14215" data-duration="2">0</strong>
+			</div>
+		</div>
+		
+	</div>
+                                </div>
+	
+                              
+			</div>
+		</div>
+			
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Distribution</h3>
+				<div class="panel-options">
+					<a href="" data-toggle="panel">
+						<span class="collapse-icon">&ndash;</span>
+						<span class="expand-icon">+</span>
+					</a>
+					<a href="" data-toggle="remove">
+						&times;
+					</a>
+				</div>
+			</div>
+			<div class="panel-body">	
+				<script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						if( ! $.isFunction($.fn.dxChart))
+							return;
+							
+						var dataSource = [
+							{region: "Asia", val: 4119626293},
+							{region: "Africa", val: 1012956064},
+							{region: "Northern America", val: 344124520},
+							{region: "Latin America and the Caribbean", val: 590946440},
+							{region: "Europe", val: 727082222},
+							{region: "Oceania", val: 35104756}
+						], timer;
+						
+						$("#bar-10").dxPieChart({
+							dataSource: dataSource,
+							title: " Merchants",
+							tooltip: {
+								enabled: false,
+							  	format:"millions",
+								customizeText: function() { 
+									return this.argumentText + "<br/>" + this.valueText;
+								}
+							},
+							size: {
+								height: 210
+							},
+							pointClick: function(point) {
+								point.showTooltip();
+								clearTimeout(timer);
+								timer = setTimeout(function() { point.hideTooltip(); }, 2000);
+								$("select option:contains(" + point.argument + ")").prop("selected", true);
+							},
+							legend: {
+								visible: false
+							},  
+							series: [{
+								type: "doughnut",
+								argumentField: "region"
+							}],
+							palette: xenonPalette
+						});
+						$("#bar-11").dxPieChart({
+							dataSource: dataSource,
+							title: "Institutions",
+							tooltip: {
+								enabled: false,
+							  	format:"millions",
+								customizeText: function() { 
+									return this.argumentText + "<br/>" + this.valueText;
+								}
+							},
+							size: {
+								height: 210
+							},
+							pointClick: function(point) {
+								point.showTooltip();
+								clearTimeout(timer);
+								timer = setTimeout(function() { point.hideTooltip(); }, 2000);
+								$("select option:contains(" + point.argument + ")").prop("selected", true);
+							},
+							legend: {
+								visible: false
+							},  
+							series: [{
+								type: "doughnut",
+								argumentField: "region"
+							}],
+							palette: xenonPalette
+						});
+						$("#bar-12").dxPieChart({
+							dataSource: dataSource,
+							title: "Gender",
+							tooltip: {
+								enabled: false,
+							  	format:"millions",
+								customizeText: function() { 
+									return this.argumentText + "<br/>" + this.valueText;
+								}
+							},
+							size: {
+								height: 210
+							},
+							pointClick: function(point) {
+								point.showTooltip();
+								clearTimeout(timer);
+								timer = setTimeout(function() { point.hideTooltip(); }, 2000);
+								$("select option:contains(" + point.argument + ")").prop("selected", true);
+							},
+							legend: {
+								visible: false
+							},  
+							series: [{
+								type: "doughnut",
+								argumentField: "region"
+							}],
+							palette: xenonPalette
+						});
+						$("#bar-13").dxPieChart({
+							dataSource: dataSource,
+							title: "Age Set",
+							tooltip: {
+								enabled: false,
+							  	format:"millions",
+								customizeText: function() { 
+									return this.argumentText + "<br/>" + this.valueText;
+								}
+							},
+							size: {
+								height: 210
+							},
+							pointClick: function(point) {
+								point.showTooltip();
+								clearTimeout(timer);
+								timer = setTimeout(function() { point.hideTooltip(); }, 2000);
+								$("select option:contains(" + point.argument + ")").prop("selected", true);
+							},
+							legend: {
+								visible: false
+							},  
+							series: [{
+								type: "doughnut",
+								argumentField: "region"
+							}],
+							palette: xenonPalette
+						});
+						
+					});
+				</script>
+                                
+	
+                                <div class="row" style="height: 225px; width: 100%;">
+                                    <div class="col-sm-6">
+                                        <div id="bar-10" ></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div id="bar-11"></div> 
+                                    </div>
+				           
+                                </div>
+                                <div class="row" style="height: 225px; width: 100%;">
+                                    <div class="col-sm-6">
+                                        <div id="bar-12" ></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div id="bar-13"></div> 
+                                    </div>
+				           
+                                </div>
+			</div>
+		</div>
+			
+	</div>
+</div>
