@@ -1,0 +1,12 @@
+{
+    "name": "rufusmbugua/buymore_dashboard",
+    "authors": [
+        {
+            "name": "Rufus Mbugua",
+            "email": "mbuguarufus@gmail.com"
+        }
+    ],
+    "require": {
+        "curl/curl": "~1.2"
+    }
+}
